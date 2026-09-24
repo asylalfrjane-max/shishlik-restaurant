@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم شيشلك - أجدابيا</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            padding-bottom: 100px;
+        }
+        header {
+            background: linear-gradient(135deg, #111, #333);
+            color: #ffc107;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid #ffc107;
+        }
+        header h1 {
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+        header p {
+            font-size: 14px;
+            color: #ddd;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        .category-title {
+            font-size: 20px;
+            color: #222;
+            margin: 20px 0 10px;
+            border-right: 4px solid #ffc107;
+            padding-right: 8px;
+        }
+        .item-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .item-info {
+            flex-grow: 1;
+            padding-left: 10px;
+        }
+        .item-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #111;
+        }
+        .item-desc {
+            font-size: 13px;
+            color: #666;
+            margin: 4px 0;
+        }
+        .item-price {
+            font-size: 15px;
+            font-weight: bold;
+            color: #d9534f;
+        }
+        .item-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .qty-btn {
+            background: #eee;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .add-btn {
+            background: #ffc107;
+            color: #111;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .cart-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #222;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>مطعم شيشلك</h1>
+        <p>أجدابيا - ليبيا | هاتف: 0947300333</p>
+    </header>
+
+    <div class="container" id="menu-container">
+        <!-- قسم السندوتشات -->
+        <div class="category-title">السندوتشات</div>
+        <div class="item-card">
+            <div class="item-info">
+                <div class="item-name">سندوتش شيشلك لحم</div>
+                <div class="item-desc">قطع لحم طرية ومشوية على الطريقة الخاصة</div>
+                <div class="item-price">15 د.ل</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('سندوتش شيشلك لحم', 15)">إضافة</button>
+        </div>
+        <div class="item-card">
+            <div class="item-info">
+                <div class="item-name">سندوتش شيشلك دجاج</div>
+                <div class="item-desc">دجاج مشوي متبل بخلطة شيشلك المميزة</div>
+                <div class="item-price">12 د.ل</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('سندوتش شيشلك دجاج', 12)">إضافة</button>
+        </div>
+
+        <!-- قسم البوكسات -->
+        <div class="category-title">البوكسات والعائلية</div>
+        <div class="item-card">
+            <div class="item-info">
+                <div class="item-name">بوكس شيشلك العائلي</div>
+                <div class="item-desc">تشكيلة مشاوي متنوعة مع البطاطس والصوصات والمقبلات</div>
+                <div class="item-price">65 د.ل</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('بوكس شيشلك العائلي', 65)">إضافة</button>
+        </div>
+
+        <!-- قسم الإضافات -->
+        <div class="category-title">الإضافات والمشروبات</div>
+        <div class="item-card">
+            <div class="item-info">
+                <div class="item-name">بطاطس مقلية</div>
+                <div class="item-desc">بطاطس مقرمشة ذهبية</div>
+                <div class="item-price">5 د.ل</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('بطاطس مقلية', 5)">إضافة</button>
+        </div>
+        <div class="item-card">
+            <div class="item-info">
+                <div class="item-name">مشروب غازي</div>
+                <div class="item-desc">مشروب بارد منعش</div>
+                <div class="item-price">2.5 د.ل</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('مشروب غازي', 2.5)">إضافة</button>
+        </div>
+    </div>
+
+    <!-- شريط سلة المشتريات السفلي -->
+    <div class="cart-bar">
+        <div>
+            <span id="cart-count">0 عناصر</span> | 
+            <span id="cart-total">0 د.ل</span>
+        </div>
+        <a href="#" id="whatsapp-link" class="whatsapp-btn" onclick="sendOrder()">إرسال الطلب عبر واتساب</a>
+    </div>
+
+    <script>
+        let cart = {};
+
+        function addToCart(name, price) {
+            if (cart[name]) {
+                cart[name].qty += 1;
+            } else {
+                cart[name] = { price: price, qty: 1 };
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            let totalCount = 0;
+            let totalPrice = 0;
+            for (let item in cart) {
+                totalCount += cart[item].qty;
+                totalPrice += cart[item].price * cart[item].qty;
+            }
+            document.getElementById('cart-count').innerText = totalCount + ' عناصر';
+            document.getElementById('cart-total').innerText = totalPrice.toFixed(1) + ' د.ل';
+        }
+
+        function sendOrder() {
+            let totalCount = 0;
+            for (let item in cart) {
+                totalCount += cart[item].qty;
+            }
+            if (totalCount === 0) {
+                alert('الرجاء اختيار بعض الأصناف أولاً!');
+                return;
+            }
+            let message = "مرحباً، أريد طلب الأطناف التالية من مطعم شيشلك:\n\n";
+            let totalPrice = 0;
+            for (let item in cart) {
+                let itemTotal = cart[item].price * cart[item].qty;
+                totalPrice += itemTotal;
+                message += `- ${item} (العدد: ${cart[item].qty}) - ${itemTotal} د.ل\n`;
+            }
+            message += `\nالمجموع الكلي: ${totalPrice.toFixed(1)} د.ل`;
+            
+            let phone = "218947300333";
+            let url = `https://wa.me/${phone}?text=` + encodeURIComponent(message);
+            document.getElementById('whatsapp-link').href = url;
+        }
+    </script>
+</body>
+</html>
