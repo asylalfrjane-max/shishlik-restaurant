@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم شيشلك | Shishlik Restaurant</title>
+    <!-- استدعاء خط Cairo الاحترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- مكتبة الأيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #7b1113; /* أحمر داكن فاخر */
+            --secondary-color: #d4a373; /* ذهبي دافئ */
+            --dark-bg: #1a120b;
+            --light-bg: #fdfbf7;
+            --text-main: #2b2b2b;
+            --text-light: #666;
+            --white: #ffffff;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: #e76f51;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .cart-btn {
+            background-color: var(--secondary-color);
+            color: var(--dark-bg);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .cart-btn:hover {
+            background-color: var(--white);
+            transform: scale(1.05);
+        }
+
+        .cart-count {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            padding: 2px 7px;
+            font-size: 0.8rem;
+        }
+
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('image_3.png') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #5d0b0d;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: var(--dark-bg);
+        }
+
+        .menu-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            border: 1px solid #f0e6dc;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(123, 17, 19, 0.15);
+        }
+
+        .card-img-container {
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover .card-img-container img {
+            transform: scale(1.1);
+        }
+
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .card-footer-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--primary-color);
+        }
+
+        .add-to-cart {
+            background-color: var(--secondary-color);
+            color: var(--dark-bg);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            left: -400px;
+            width: 380px;
+            height: 100%;
+            background: var(--white);
+            box-shadow: 5px 0 25px rgba(0,0,0,0.3);
+            z-index: 2000;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            left: 0;
+        }
+
+        .cart-header {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-body {
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-details h4 {
+            font-size: 1rem;
+            color: var(--dark-bg);
+        }
+
+        .cart-item-details p {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-item-controls button {
+            background: #eee;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+        }
+
+        .total-price {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--dark-bg);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: #25d366;
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .checkout-btn:hover {
+            background-color: #20ba5a;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 3000;
+            display: none;
+        }
+
+        .contact-section {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info h3, .map-container h3 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-info p i {
+            color: var(--secondary-color);
+        }
+
+        .map-box {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .map-box iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .floating-actions {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .float-whatsapp { background-color: #25d366; }
+        .float-call { background-color: var(--primary-color); }
+        .float-btn:hover { transform: scale(1.1); }
+
+        footer {
+            background-color: #110b07;
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #332215;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-fire-flame-curved"></i> شيشلك
+            </div>
+            <ul class="nav-links">
+                <li><a href="#menu">قائمة الطعام</a></li>
+                <li><a href="#location">موقعنا</a></li>
+                <li>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <i class="fa-solid fa-cart-shopping"></i> السلة
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>مطعم شيشلك للمشويات</h1>
+            <p>جهّز طلبك وخلي الباقي علينا! استمتع بألذ المشويات الطازجة والبوكسات الغنية بأجود الأطعمة والصلصات الخاصة.</p>
+            <div class="hero-btns">
+                <a href="#menu" class="btn btn-primary"><i class="fa-solid fa-utensils"></i> تصفح القائمة</a>
+                <a href="tel:0947300333" class="btn btn-outline"><i class="fa-solid fa-phone"></i> اتصل الآن</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+        <h2 class="section-title">قائمة الطعام الفاخرة</h2>
+        <p class="section-subtitle">اختر ما يطيب لك من سندوتشات المشويات والبوكسات المميزة</p>
+
+        <!-- قسم السندوتشات -->
+        <h3 style="color: var(--primary-color); margin-bottom: 20px; font-size: 1.8rem; border-right: 4px solid var(--secondary-color); padding-right: 10px;">قسم السندوتشات</h3>
+        <div class="menu-grid" style="margin-bottom: 50px;">
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="image_9.png" alt="سندوتش كباب">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3 class="card-title">سندوتش كباب</h3>
+                        <p class="card-desc">المكونات: السلطة الخاصة + صوص الساموري المميز.</p>
+                    </div>
+                    <div class="card-footer-info">
+                        <span class="price">10 د.ل</span>
+                        <button class="add-to-cart" onclick="addToCart('سندوتش كباب', 10)">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="image_4.png" alt="سندوتش الشيش">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3 class="card-title">سندوتش الشيش</h3>
+                        <p class="card-desc">المكونات: قطع الدجاج الطازجة المشوية + صوص الساموري.</p>
+                    </div>
+                    <div class="card-footer-info">
+                        <span class="price">11 د.ل</span>
+                        <button class="add-to-cart" onclick="addToCart('سندوتش الشيش', 11)">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم البوكسات -->
+        <h3 style="color: var(--primary-color); margin-bottom: 20px; font-size: 1.8rem; border-right: 4px solid var(--secondary-color); padding-right: 10px;">قسم البوكسات</h3>
+        <div class="menu-grid" style="margin-bottom: 50px;">
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="image_3.png" alt="بوكس شيشلك">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3 class="card-title">بوكس شيشلك</h3>
+                        <p class="card-desc">يحتوي على: 1 كباب + 1 شيش + بطاطا + صوص.</p>
+                    </div>
+                    <div class="card-footer-info">
+                        <span class="price">25 د.ل</span>
+                        <button class="add-to-cart" onclick="addToCart('بوكس شيشلك', 25)">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="image_6.png" alt="فردي شيش">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3 class="card-title">فردي شيش</h3>
+                        <p class="card-desc">يحتوي على: سندوتش + بطاطا + صوص.</p>
+                    </div>
+                    <div class="card-footer-info">
+                        <span class="price">15 د.ل</span>
+                        <button class="add-to-cart" onclick="addToCart('فردي شيش', 15)">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="image_5.png" alt="فردي كباب">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3 class="card-title">فردي كباب</h3>
+                        <p class="card-desc">يحتوي على: سندوتش + بطاطا + صوص.</p>
+                    </div>
+                    <div class="card-footer-info">
+                        <span class="price">15 د.ل</span>
+                        <button class="add-to-cart" onclick="addToCart('فردي كباب', 15)">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الإضافات -->
+        <h3 style="color: var(--primary-color); margin-bottom: 20px; font-size: 1.8rem; border-right: 4px solid var(--secondary-color); padding-right: 10px;">قسم الإضافات</h3>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="image_8.png" alt="بطاطا">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3 class="card-title">بطاطا مقلية مقرمشة</h3>
+                        <p class="card-desc">بطاطا ذهبية طازجة ومقرمشة.</p>
+                    </div>
+                    <div class="card-footer-info">
+                        <span class="price">7 د.ل</span>
+                        <button class="add-to-cart" onclick="addToCart('بطاطا', 7)">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="image_2.png" alt="صوصات">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3 class="card-title">صوص إضافي</h3>
+                        <p class="card-desc">صوص ساموري أو صوص خاص.</p>
+                    </div>
+                    <div class="card-footer-info">
+                        <span class="price">1 د.ل</span>
+                        <button class="add-to-cart" onclick="addToCart('صوص إضافي', 1)">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="card-img-container">
+                    <img src="image_7.png" alt="مشروبات غازية">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h3 class="card-title">مشروب غازي</h3>
+                        <p class="card-desc">مشروب بارد ومنعش حسب الطلب.</p>
+                    </div>
+                    <div class="card-footer-info">
+                        <span class="price">3 د.ل</span>
+                        <button class="add-to-cart" onclick="addToCart('مشروب غازي', 3)">إضافة للسلة</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="location">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>تواصل معنا</h3>
+                <p><i class="fa-solid fa-phone"></i> الهاتف / واتساب: 0947300333</p>
+                <p><i class="fa-solid fa-location-dot"></i> موقعنا: ليبيا</p>
+                <p><i class="fa-solid fa-clock"></i> ساعات العمل: يومياً من 1:00 ظهراً حتى 2:00 صباحاً</p>
+            </div>
+            <div class="map-container">
+                <h3>موقعنا على الخريطة</h3>
+                <div class="map-box">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.1!2d20.0!3d32.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMzLCsDAwJzAwLjAiTiAyMMKwMDAnMDAuMCJF!5e0!3m2!1sar!2sly!4v1600000000000!5m2!1sar!2sly" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="floating-actions">
+        <a href="https://wa.me/218947300333" target="_blank" class="float-btn float-whatsapp" title="تواصل عبر واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="tel:0947300333" class="float-btn float-call" title="اتصال هاتفي"><i class="fa-solid fa-phone"></i></a>
+    </div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>سلة الطلبات</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-body" id="cartItemsContainer">
+            <p style="text-align: center; color: var(--text-light); margin-top: 40px;">السلة فارغة حالياً</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-price">
+                <span>المجموع الإجمالي:</span>
+                <span id="cartTotalPrice">0 د.ل</span>
+            </div>
+            <button class="checkout-btn" onclick="checkoutWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> إرسال الطلب عبر واتساب
+            </button>
+        </div>
+    </div>
+
+    <div class="toast" id="toastNotification">تمت إضافة الصنف إلى السلة بنجاح!</div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 مطعم شيشلك</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCartUI();
+            showToast();
+        }
+
+        function updateQuantity(name, change) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartItemsContainer');
+            const countBadge = document.getElementById('cartCount');
+            const totalPriceEl = document.getElementById('cartTotalPrice');
+
+            let totalCount = 0;
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-light); margin-top: 40px;">السلة فارغة حالياً</p>';
+            } else {
+                container.innerHTML = '';
+                cart.forEach(item => {
+                    totalCount += item.quantity;
+                    totalPrice += item.price * item.quantity;
+                    container.innerHTML += `
+                        <div class="cart-item">
+                            <div class="cart-item-details">
+                                <h4>${item.name}</h4>
+                                <p>${item.price * item.quantity} د.ل</p>
+                            </div>
+                            <div class="cart-item-controls">
+                                <button onclick="updateQuantity('${item.name}', -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="updateQuantity('${item.name}', 1)">+</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            countBadge.innerText = totalCount;
+            totalPriceEl.innerText = totalPrice + ' د.ل';
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toastNotification');
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2000);
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert('السلة فارغة!');
+                return;
+            }
+            let message = "مرحباً، أريد طلب الأصناف التالية من مطعم شيشلك:\n\n";
+            let total = 0;
+            cart.forEach(item => {
+                message += `• ${item.name} (العدد: ${item.quantity}) - السعر: ${item.price * item.quantity} د.ل\n`;
+                total += item.price * item.quantity;
+            });
+            message += `\n*المجموع الإجمالي: ${total} د.ل*\n\nشكراً لكم!`;
+
+            // رابط مباشر وسريع جداً لإرسال رسالة الواتساب بدون تأخير
+            let whatsappUrl = `https://api.whatsapp.com/send?phone=218947300333&text=${encodeURIComponent(message)}`;
+            window.location.href = whatsappUrl;
+        }
+    </script>
+</body>
+</html>
